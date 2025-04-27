@@ -1,6 +1,7 @@
+// src/pages/Signup.jsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Login.css';
+import './Login.css'; // Same CSS file - clean reuse
 
 export default function Signup() {
   const [name, setName] = useState('');
@@ -36,28 +37,31 @@ export default function Signup() {
 
   return (
     <div className="login-wrapper">
-      <div className="login-box glass">
-        <h2>Signup for AgentX 🚀</h2>
+      <div className="login-box">
+        <h2>Create Your AgentX Account 🚀</h2>
         <input
           type="text"
-          placeholder="Enter Name"
+          placeholder="Enter Full Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <input
           type="email"
-          placeholder="Enter Email"
+          placeholder="Enter Email Address"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
-          placeholder="Enter Password"
+          placeholder="Create Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <button onClick={handleSignup}>Signup</button>
-        <button onClick={() => navigate('/login')} style={{ marginTop: '10px', background: 'gray' }}>
+        <button
+          className="secondary"
+          onClick={() => navigate('/login')}
+        >
           Already have an account? Login
         </button>
       </div>
