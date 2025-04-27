@@ -15,7 +15,7 @@ export default function Signup() {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/api/signup', {
+      const res = await fetch('https://agentx-backend-gyhjh6epgyafftey.canadacentral-01.azurewebsites.net/api/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password }),
