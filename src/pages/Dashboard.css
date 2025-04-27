@@ -1,0 +1,129 @@
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+    color: #fff;
+  }
+  
+  .dashboard-title {
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: 700;
+    color: #8b5cf6;
+    margin-bottom: 3rem;
+  }
+  
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .dashboard-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .dashboard-card {
+    padding: 2rem;
+    border-radius: 1.25rem;
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .glassmorphic {
+    background: linear-gradient(145deg, rgba(34, 34, 59, 0.6), rgba(14, 14, 29, 0.6));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .glassmorphic:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #a78bfa;
+  }
+  
+  .card-meta {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: #cbd5e1;
+  }
+  
+  .focus-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .focus-item {
+    display: flex;
+    justify-content: space-between;
+    background: #1e1b4b;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    color: #e0e7ff;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+  }
+  /* src/pages/Dashboard.css */
+.dashboard-container {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: radial-gradient(ellipse at top left, #1e293b, #000);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.dashboard-card {
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+}
+
+.card-title {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+
+.card-meta {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #a0aec0;
+}
+
+.focus-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.focus-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  color: #e2e8f0;
+}
