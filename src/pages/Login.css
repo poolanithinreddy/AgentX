@@ -1,49 +1,92 @@
 .login-wrapper {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: radial-gradient(ellipse at center, #0f172a, #000);
-    font-family: 'Sora', sans-serif;
-  }
-  
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(ellipse at center, #0f172a, #000);
+  font-family: 'Sora', sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(25px);
+  padding: 40px 30px;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.login-box:hover {
+  transform: translateY(-5px);
+}
+
+.login-box h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+.login-box input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 12px 15px;
+  border-radius: 14px;
+  color: white;
+  font-size: 16px;
+  outline: none;
+}
+
+.login-box input::placeholder {
+  color: #bbb;
+}
+
+.login-box button {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border: none;
+  padding: 14px;
+  border-radius: 14px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.login-box button:hover {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  transform: scale(1.02);
+}
+
+.login-box button.secondary {
+  background: rgba(255, 255, 255, 0.2);
+  margin-top: 8px;
+}
+
+.login-box button.secondary:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 500px) {
   .login-box {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(0, 0, 100, 0.3);
-    display: flex;
-    flex-direction: column;
+    padding: 30px 20px;
     gap: 16px;
-    width: 300px;
-    text-align: center;
   }
-  
-  .login-box input {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 10px;
-    border-radius: 12px;
-    color: white;
+
+  .login-box h2 {
+    font-size: 20px;
   }
-  
-  .login-box input::placeholder {
-    color: #aaa;
-  }
-  
+
+  .login-box input,
   .login-box button {
-    background: linear-gradient(to right, #6366f1, #8b5cf6);
-    border: none;
+    font-size: 14px;
     padding: 12px;
-    border-radius: 12px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
   }
-  
-  .login-box button:hover {
-    opacity: 0.8;
-  }
-  
+}
