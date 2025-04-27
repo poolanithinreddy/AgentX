@@ -48,7 +48,7 @@ export default function Focus() {
 
   const saveFocusSession = async (completedMode, duration) => {
     try {
-      await fetch('http://localhost:5000/api/focus/saveSession', {
+      await fetch('https://agentx-backend-gyhjh6epgyafftey.canadacentral-01.azurewebsites.net/api/focus/saveSession', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
