@@ -24,7 +24,7 @@ export default function Login() {
       const data = await res.json();
       if (res.ok) {
         localStorage.setItem('agentx_user', email);
-        localStorage.setItem('agentx_name', data.name); // Save name too
+        localStorage.setItem('agentx_name', data.name);
         navigate('/chat');
       } else {
         alert(data.message);
@@ -37,7 +37,7 @@ export default function Login() {
 
   return (
     <div className="login-wrapper">
-      <div className="login-box glass">
+      <div className="login-box">
         <h2>Login to AgentX 🚀</h2>
         <input
           type="email"
@@ -52,7 +52,10 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button onClick={handleLogin}>Login</button>
-        <button onClick={() => navigate('/signup')} style={{ marginTop: '10px', background: 'gray' }}>
+        <button
+          className="secondary"
+          onClick={() => navigate('/signup')}
+        >
           New user? Signup
         </button>
       </div>
