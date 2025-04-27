@@ -37,7 +37,7 @@ export default function Dashboard() {
 
   const fetchFocusData = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/focus/getSessions/${userEmail}`);
+      const res = await fetch(`https://agentx-backend-gyhjh6epgyafftey.canadacentral-01.azurewebsites.net/api/focus/getSessions/${userEmail}`);
       if (res.ok) {
         const data = await res.json();
         console.log("✅ Focus sessions fetched:", data);
