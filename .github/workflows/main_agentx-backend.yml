@@ -70,5 +70,5 @@ jobs:
         with:
           app-name: 'agentx-backend'
           slot-name: 'Production'
-          package: .
+          package: ./server
           
