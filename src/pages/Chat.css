@@ -442,4 +442,94 @@
   90% { opacity: 0.3; }
   100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
 }
+:root {
+  --primary-cyan: rgba(0, 255, 255, 0.6);
+  --primary-purple: rgba(123, 47, 247, 0.8);
+  --primary-pink: rgba(241, 7, 163, 0.8);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
 
+
+@media (max-width: 600px) {
+  .chat-window {
+    width: 95%;
+    height: 90vh;
+    padding: 20px 18px;
+    border-radius: 20px;
+  }
+
+  .chat-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .agentx-brand h2 {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  .agentx-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .agent-selector-bar {
+    margin-top: 10px;
+  }
+
+  .agent-select {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .tab-bar {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .tab {
+    font-size: 0.95rem;
+    padding: 6px 0;
+  }
+
+  .chat-messages, .history-content {
+    gap: 10px;
+    padding-right: 4px;
+  }
+
+  .message-bubble {
+    font-size: 0.9rem;
+    padding: 12px 14px;
+    max-width: 85%;
+  }
+
+  .chat-input-container {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px 14px;
+  }
+
+  .chat-input-container input {
+    font-size: 0.95rem;
+    min-width: 200px;
+  }
+
+  .icon-btn {
+    font-size: 1.1rem;
+    width: 32px;
+    height: 32px;
+  }
+
+  .logout-btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  .avatar {
+    width: 28px;
+    height: 28px;
+  }
+}
