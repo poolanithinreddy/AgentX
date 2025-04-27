@@ -89,7 +89,7 @@ export default function Chat() {
 
   const fetchHistory = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/chat/getHistory/${userEmail}`);
+      const res = await fetch(`https://agentx-backend-gyhjh6epgyafftey.canadacentral-01.azurewebsites.net/api/chat/getHistory/${userEmail}`);
       if (res.ok) {
         const fullHistory = await res.json();
         const map = { agentx: [], ageny: [], agentz: [] };
@@ -118,7 +118,7 @@ export default function Chat() {
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:5000/api/chat/message', {
+      const res = await fetch('https://agentx-backend-gyhjh6epgyafftey.canadacentral-01.azurewebsites.net/api/chat/message', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: text, agent: selectedAgent }),
@@ -162,7 +162,7 @@ export default function Chat() {
     ];
 
     try {
-      await fetch('http://localhost:5000/api/chat/saveHistory', {
+      await fetch('https://agentx-backend-gyhjh6epgyafftey.canadacentral-01.azurewebsites.net/api/chat/saveHistory', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: userEmail, history: combinedAllAgents }),
