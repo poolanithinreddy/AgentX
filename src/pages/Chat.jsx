@@ -6,17 +6,70 @@ import './Chat.css';
 export default function Chat() {
   const navigate = useNavigate();
   const userEmail = localStorage.getItem('agentx_user');
-  
-  const [historyMap, setHistoryMap] = useState({ agentx: [], ageny: [], agentz: [] }); // ⬅️ Only for full history
-  const [liveMessages, setLiveMessages] = useState([]); // ⬅️ Only for live chat in current session
 
+  const [historyMap, setHistoryMap] = useState({ agentx: [], ageny: [], agentz: [] });
+  const [liveMessages, setLiveMessages] = useState([]);
   const [input, setInput] = useState('');
   const [listening, setListening] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('chat');
   const [selectedAgent, setSelectedAgent] = useState('agentx');
   const recognitionRef = useRef(null);
   const messagesEndRef = useRef(null);
   const spokeFromMicRef = useRef(false);
+  const cursorLightRef = useRef(null);
+  const particlesContainerRef = useRef(null);
+
+  // Initialize cursor and particle effects
+  useEffect(() => {
+    // Create cursor light element
+    const cursorLight = document.createElement('div');
+    cursorLight.className = 'cursor-light';
+    document.body.appendChild(cursorLight);
+    cursorLightRef.current = cursorLight;
+
+    // Create particles container
+    const particles = document.createElement('div');
+    particles.className = 'particles';
+    document.body.appendChild(particles);
+    particlesContainerRef.current = particles;
+
+    // Cursor light effect
+    const handleMouseMove = (e) => {
+      cursorLight.style.left = `${e.clientX}px`;
+      cursorLight.style.top = `${e.clientY}px`;
+    };
+
+    // Particles effect
+    const createParticles = () => {
+      const particleCount = 30;
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.style.width = `${Math.random() * 10 + 2}px`;
+        particle.style.height = particle.style.width;
+        particle.style.left = `${Math.random() * 100}vw`;
+        particle.style.top = `${Math.random() * 100}vh`;
+        particle.style.animation = `float-up ${Math.random() * 10 + 10}s linear infinite`;
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+        particles.appendChild(particle);
+      }
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    createParticles();
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      // Clean up when component unmounts
+      if (cursorLightRef.current) {
+        document.body.removeChild(cursorLightRef.current);
+      }
+      if (particlesContainerRef.current) {
+        document.body.removeChild(particlesContainerRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (!userEmail) {
@@ -27,7 +80,7 @@ export default function Chat() {
   }, [userEmail, navigate]);
 
   useEffect(() => {
-    setLiveMessages([]); // Clear live chat when agent changes
+    setLiveMessages([]);
   }, [selectedAgent]);
 
   useEffect(() => {
@@ -62,6 +115,7 @@ export default function Chat() {
 
     setLiveMessages(updatedLiveMessages);
     setInput('');
+    setLoading(true);
 
     try {
       const res = await fetch('http://localhost:5000/api/chat/message', {
@@ -81,16 +135,16 @@ export default function Chat() {
       const finalLiveMessages = [...updatedLiveMessages, botReply];
       setLiveMessages(finalLiveMessages);
 
-      // Save combined (history + live)
       const combinedHistory = [
         ...(historyMap[selectedAgent] || []),
         ...finalLiveMessages,
       ];
 
       await saveHistory(selectedAgent, combinedHistory);
-
     } catch (err) {
       console.error('Error sending message:', err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -113,7 +167,7 @@ export default function Chat() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: userEmail, history: combinedAllAgents }),
       });
-      setHistoryMap(finalHistory); // Update local history map after save
+      setHistoryMap(finalHistory);
     } catch (err) {
       console.error('Error saving chat history:', err);
     }
@@ -172,10 +226,21 @@ export default function Chat() {
     }
   };
 
+  const renderFormattedContent = (content) => {
+    const formatted = content
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold
+      .replace(/\*(.*?)\*/g, '<em>$1</em>'); // Italic
+
+    return (
+      <div
+        dangerouslySetInnerHTML={{ __html: formatted.replace(/\n/g, '<br/>') }}
+      />
+    );
+  };
+
   return (
     <div className="chat-outer-wrapper">
       <div className="chat-window glass">
-
         {/* Header */}
         <div className="chat-header">
           <div className="agentx-brand">
@@ -204,19 +269,26 @@ export default function Chat() {
           <button className={`tab ${activeTab === 'history' ? 'active' : ''}`} onClick={() => setActiveTab('history')}>History</button>
         </div>
 
-        {/* Main */}
+        {/* Main Content */}
         {activeTab === 'chat' ? (
           <div className="chat-messages">
             {liveMessages.map((msg, i) => (
               <div key={i} className={`message-row ${msg.role}`}>
                 {msg.role === 'assistant' && <img src="/icon.png" alt="AgentX" className="avatar" />}
                 <div className={`message-bubble ${msg.role}`}>
-                  {msg.content.split('\n').map((line, idx) => (
-                    <p key={idx}>{line}</p>
-                  ))}
+                  {renderFormattedContent(msg.content)}
                 </div>
               </div>
             ))}
+
+            {loading && (
+              <div className="message-row assistant">
+                <img src="/icon.png" alt="AgentX" className="avatar" />
+                <div className="message-bubble assistant loading-bubble">
+                  <span className="loading-dots"><span>.</span><span>.</span><span>.</span></span>
+                </div>
+              </div>
+            )}
             <div ref={messagesEndRef} />
           </div>
         ) : (
@@ -229,7 +301,7 @@ export default function Chat() {
           </div>
         )}
 
-        {/* Input */}
+        {/* Input Section */}
         <div className="chat-input-container">
           {!listening ? (
             <button className="icon-btn" onClick={startListening}><FaMicrophone /></button>
