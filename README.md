@@ -79,7 +79,7 @@ AgentX adheres to Microsoft’s Responsible AI practices:
 
 | Homepage | Focus Tracker | AI Chat | Dashboard |
 |----------|----------------|---------|-----------|
-| ![](screenshots/home.png) | ![](screenshots/focus.png) | ![](screenshots/chat.png) | ![](screenshots/dashboard.png) |
+| ![](https://github.com/user-attachments/assets/8d5476a6-d3a6-470f-b724-2163a57df242) | ![](https://github.com/user-attachments/assets/7266820b-3888-477c-9078-fae4f7150ef0) | ![](https://github.com/user-attachments/assets/693246a8-f2f4-4273-8e10-34f6bd36720f) | ![](https://github.com/user-attachments/assets/fd2944d3-04e2-4371-8c76-b419c26bdc4c) |
 
 > All screens support light/dark mode and are optimized for accessibility.
 
