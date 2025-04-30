@@ -1,113 +1,173 @@
-🌟 AgentX – Your AI Life Copilot
+# 🌟 AgentX – Your AI Life Copilot
 
-Empowering Focus. Enhancing Productivity. Supporting Mental Wellness.
+> Empowering Focus. Enhancing Productivity. Supporting Mental Wellness.
 
+AgentX is a next-gen, emotionally-intelligent AI agent built to support focus, emotional growth, and wellness. Designed during the **Microsoft AI Agents Hackathon**, it leverages the best of **Microsoft Azure** — including **Azure AI Foundry**, **Azure CosmosDB**, and **Azure App Services** — to deliver an impactful, personalized experience.
 
+---
 
-🚀 About AgentX
+## 🚀 What is AgentX?
 
-AgentX is a next-generation AI-powered personal life assistant, designed to help users:
+AgentX helps users — especially neurodivergent individuals — lead more balanced, productive lives by combining empathetic AI chat, real-time emotion tracking, and personalized focus sessions.
 
-Stay focused through intelligent focus sessions
+### Key Functionalities
+- 🌟 **Supportive AI Chat**: Engage with 3 AI guides (Emotional Support, Gym Coach, Mindfulness Guru)
+- ⏰ **Focus Coaching**: Track timed productivity sessions with journaling and summaries
+- 💪 **Mood Tracking**: Record and visualize daily emotional patterns
+- 🔐 **Secure Data**: Per-user CosmosDB records, no sharing or external access
 
-Track daily moods and mental health
+> Built with empathy, deployed on Azure, and powered by DeepSeek via Azure AI Foundry.
 
-Save chat conversations and emotional check-ins
+---
 
-Personalize their growth and productivity journey
+## 🛠️ Tech Stack
 
-Built with cutting-edge technologies like Azure OpenAI, CosmosDB, and a modern web tech stack.
+| Layer       | Technologies Used                                  |
+|------------|------------------------------------------------------|
+| Frontend   | React.js (Vite), TailwindCSS, Framer Motion          |
+| Backend    | Node.js, Express.js (Hosted on **Azure App Services**) |
+| Database   | **Azure CosmosDB (NoSQL)** – stores per-user chat and focus sessions |
+| AI Models  | **DeepSeek Model** via Azure AI Foundry (Chat + Guidance) |
+| Hosting    | **Frontend on Firebase/Vercel** → https://agentx1.web.app |
 
-🛠️ Tech Stack
+---
 
-Frontend
+## ⚙️ Architecture Diagram
 
-Backend
+```
+[ React + Vite Frontend (Firebase Hosting) ]
+               |
+               v
+[ Node.js + Express Backend (Azure App Services) ]
+               |
+               v
++--------------------------------------------+
+|                Microsoft Azure              |
+|--------------------------------------------|
+| - Azure CosmosDB (chat & focus history)     |
+| - Azure AI Foundry (DeepSeek Chat Model)     |
+| - Azure Identity / App Service (Hosting)    |
++--------------------------------------------+
+```
 
-Database
+> Modular, cloud-native, and built for real-time human-AI wellness support.
 
-Hosting
+---
 
-Vite + React.js
+## 📂 Features
 
-Node.js + Express.js
+- ✅ Emotionally-aware AI chat with 3 personas (Supportive Coach, Gym Trainer, Meditation Guru)
+- ✅ Chat history stored securely in CosmosDB with per-user separation
+- ✅ Total focus time calculation and timestamped productivity sessions
+- ✅ Mood graph visualization and journaling
+- ✅ Hosted frontend at: https://agentx1.web.app
+- ✅ Fully responsive, mobile-friendly UI with dark mode
 
-Azure CosmosDB
+---
 
-Azure (Planned)
+## 🧠 Responsible AI
 
-📦 Features
+AgentX adheres to Microsoft’s Responsible AI practices:
+- ⛔️ No diagnosis or medical advice
+- 🔒 All user data is private (stored per email in CosmosDB)
+- 📊 Disclaimers and empathetic tone baked into all agent replies
+- 🫫 Human-in-the-loop interactions encouraged via journaling and mood check-ins
 
-✅ AI Emotional Support Chat
+---
 
-✅ Mood Tracking and Mood-based Insights
+## 🗃️ Screenshots
 
-✅ Focus Session Timer and Progress Tracking
+| Homepage | Focus Tracker | AI Chat | Dashboard |
+|----------|----------------|---------|-----------|
+| ![](screenshots/home.png) | ![](screenshots/focus.png) | ![](screenshots/chat.png) | ![](screenshots/dashboard.png) |
 
-✅ Personalized User Profiles (Signup/Login)
+> All screens support light/dark mode and are optimized for accessibility.
 
-✅ Chat History Saved Securely
+---
 
-✅ Scalable Architecture (Azure Cloud-ready)
+## 🛠️ Getting Started
 
-📸 Screenshots
-
-![image](https://github.com/user-attachments/assets/8d5476a6-d3a6-470f-b724-2163a57df242)
-![image](https://github.com/user-attachments/assets/c325f019-8d6c-4715-af09-ce446e99a65c)
-![image](https://github.com/user-attachments/assets/783aadac-9899-49f8-b757-21201a585ee6)
-![image](https://github.com/user-attachments/assets/7266820b-3888-477c-9078-fae4f7150ef0)
-![image](https://github.com/user-attachments/assets/fd2944d3-04e2-4371-8c76-b419c26bdc4c)
-
-
-🧠 Getting Started
-
-1. Clone the Repository
-
+### 1. Clone Repo
+```bash
 git clone https://github.com/poolanithinreddy/AgentX.git
 cd AgentX
+```
 
-2. Install Frontend
-
-cd frontend   # (or the directory where your Vite React app is)
+### 2. Setup Frontend
+```bash
+cd frontend
 npm install
 npm run dev
+```
 
-3. Install Backend
-
+### 3. Setup Backend
+```bash
 cd server
 npm install
 npm run dev
+```
+Server will run at `http://localhost:5000`
 
-(Backend runs on port 5000 by default.)
-
-🔐 Environment Variables (.env)
-
-Create a .env file inside server/:
-
+### 4. Environment Variables
+Inside `server/.env`:
+```ini
 PORT=5000
+COSMOS_ENDPOINT=your_cosmosdb_endpoint
+COSMOS_KEY=your_cosmos_key
+AZURE_OPENAI_DEPLOYMENT_NAME=deepseek-deployment
+AGENTX_API_KEY=your_azure_ai_key
+AGENTX_ENDPOINT=https://your-deepseek-endpoint.openai.azure.com/
+```
+> ❌ Never commit this file publicly
 
-COSMOS_ENDPOINT=your-cosmos-endpoint
-COSMOS_KEY=your-cosmos-key
+---
 
-# Azure OpenAI (optional)
-AZURE_OPENAI_DEPLOYMENT_NAME=your-deployment-name
-AGENTX_ENDPOINT=your-agentx-endpoint
-AGENTX_API_KEY=your-agentx-api-key
+## 🚧 Development Notes
 
-✅ Do not expose your .env file publicly.
+### Security
+- ⚡ API sanitization for inputs
+- ✅ CosmosDB document validation
+- ⛔️ .env isolation of secrets
 
-🤝 Contributing
+### Testing
+- Basic chat mocks available for local testing
+- Manual end-to-end tests completed on Azure
 
-Pull requests are welcome!For major changes, please open an issue first to discuss what you would like to change.
+### Roadmap
+- ✔ Semantic Kernel agent orchestration (next phase)
+- ✔ Journaling insights + timeline
+- ✔ Mobile PWA version
+- ✔ Expanded mental health check-ins
 
-📄 License
+---
 
-This project is licensed under the MIT License.
+## 🤝 Contributing
+We welcome contributions!
+- Fork the repo
+- Create a feature branch
+- Submit a PR with a clear description
 
-🌟 Project Status
+---
 
-✅ MVP Completed🚀 Deployments and production optimizations coming soon...
+## 📚 License
+MIT License — free for personal and commercial use with attribution.
 
-🔥 Star this Repository if you love it!
+---
 
-Let's build the future of intelligent emotional support together! 🚀
+## ✨ Why It Matters
+
+> Created for the **Microsoft AI Agents Hackathon**, AgentX is more than a productivity tool — it's a compassionate AI companion built with **Microsoft Azure’s best technologies**.
+
+- Aligns with **Best Overall Agent**, **Best Azure AI Agent Service**
+- Built using **Azure AI Foundry (DeepSeek)** + **Azure CosmosDB** + **Azure App Hosting**
+- Clean architecture, real user data tracking, and end-to-end emotional awareness
+
+---
+
+## 🌟 Give us a Star
+If you believe in building emotionally-aware technology that supports humans in meaningful ways — please consider giving AgentX a ⭐. Let’s build a future where AI empowers emotional wellness.
+
+---
+
+*Made with ❤️ during the Microsoft AI Agents Hackathon*
+
